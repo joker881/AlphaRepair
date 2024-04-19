@@ -208,15 +208,15 @@ def main(bug_ids, output_folder, skip_validation, uniapr, beam_width, re_rank, p
             patch_pool_folder = "pfl-patches-pool-temp"
 
         testmethods = os.popen('defects4j export -w %s -p tests.trigger' % ('/tmp/' + bug_id)).readlines()
-
+        src_dir = '/tmp/'+bug_id
         logger = Logger(output_folder + '/' + bug_id + "_result.txt")
         logger.logo(args)
 
         if uniapr:
-            validator = UNIAPRpatches(bug_id, testmethods, logger, patch_pool_folder=patch_pool_folder,
+            validator = UNIAPRpatches(bug_id, testmethods, logger,src_dir, patch_pool_folder=patch_pool_folder,
                                       skip_validation=skip_validation)
         else:
-            validator = GVpatches(bug_id, testmethods, logger, src_dirpatch_pool_folder=patch_pool_folder,
+            validator = GVpatches(bug_id, testmethods, logger,src_dir, patch_pool_folder=patch_pool_folder,
                                   skip_validation=skip_validation)
 
         for file, line_number in location:
@@ -252,5 +252,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print("Run with setting:")
     print(args)
-    main([args.bug_id], args.output_folder, args.skip_v, args.uniapr, args.beam_width,
+    main(['none'], args.output_folder, args.skip_v, args.uniapr, args.beam_width,
          args.re_rank, args.perfect, args.top_n_patches)

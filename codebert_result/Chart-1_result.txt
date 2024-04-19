@@ -1,0 +1,2 @@
+Namespace(beam_width=25, bug_id='Chart-1', output_folder='codebert_result', perfect=False, re_rank=False, skip_v=False, top_n_patches=-1, uniapr=False)
+Validating Patches for file: /tmp/Chart-1/source/org/jfree/chart/renderer/category/AbstractCategoryItemRenderer.java 1796
